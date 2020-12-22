@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "PasswordHub";
+    Layout = "~/Views/Start/_Layout.cshtml";
+}
+
+@model PasswordHub.ViewModels.SignInViewModel
+
+<header class="header">
+    <div class="wrapper">
+        <div class="header__wrapper">
+            <div class="header_logo">
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-list-item">
+                        <a class="header__nav-link" asp-controller="Start" asp-action="Register">Регистрация</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <section class="intro">
+        <div class="wrapper">
+            <div class="intro__wrapper">
+                <div class="intro_titles">
+                    <h1 class="intro__title">
+                        PasswordHub
+                    </h1>
+                    <p class="intro__subtitle">
+                        А ваши пароли в безопасности?
+                    </p>
+                </div>
+                <form class="intro__form" asp-controller="Start" asp-action="SignIn">
+                    <div class="intro__form-items">
+                        <div class="validation-error-list" asp-validation-summary="ModelOnly"></div>
+                        <div class="intro__form-item">
+                            <p>Адрес электронной почты</p>
+                            <input type="text" placeholder="example@mail.com" class="intro__form-field" asp-for="Email">
+                            <div class="validation-error">
+                                <span asp-validation-for="Email" />
+                            </div>
+                        </div>
+                        <div class="intro__form-item">
+                            <p>Пароль</p>
+                            <input type="text" placeholder="password" class="intro__form-field" asp-for="Password">
+                            <div class="validation-error">
+                                <span asp-validation-for="Password" />
+                            </div>
+                        </div>
+                        <div class="intro__form-item">
+                            <p class="form__item-center">
+                                <button type="submit" class="intro__form-button">Войти</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="wrapper">
+            <div class="content__item-block">
+                <a href="#" class="content__link">Начало работы с PasswordHub</a>
+            </div>
+            <div class="content__row_blocks">
+                <div class="content__item-block content__item-middle-block">
+                    <a href="#" class="content__link">Безопасность данных</a>
+                </div>
+                <div class="content__item-block content__item-middle-block">
+                    <a href="#" class="content__link">Почему именно мы?</a>
+                </div>
+                <div class="content__item-block content__item-middle-block">
+                    <a href="#" class="content__link">О нас</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
