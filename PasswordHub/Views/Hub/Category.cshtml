@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "Index";
+}
+
+@model PasswordHub.ViewModels.CategoryViewModel
+
+@if (Model.Category == null)
+{
+    <p class="content__title">Создание категории</p>
+}
+else
+{
+    <p class="content__title">Изменение категории</p>
+}
+<div class="content__input">
+    <p class="content__input-title">Название</p>
+    <input type="text" id="category-name-input-field" class="content__input-field input-field" asp-for="Name">
+</div>
+<div class="content_actions">
+    <button class="content_save button-style" onclick="EditCategory('@Model.Id')">Сохранить</button>
+    @if (Model.Category != null)
+    {
+        <button class="content_delete button-style" onclick="RemoveCategory('@Model.Id')">Удалить</button>
+    }
+</div>
+<div id="category-fields-block" class="content__create-category-items">
+    <div class="content__create-category-set-count-item">
+        <p class="content__input-title">Количество полей</p>
+        <input id="category-count-field" class="content__number-input" type="number" value="@Model.Fields.Count" min="1" max="10">
+        <button class="content__btn-set-count-item button-style" onclick="CategoryChangeCountField()">Изменить</button>
+    </div>
+    @foreach (var i in Model.Fields)
+    {
+        <div class="content__create-category-item">
+            <div class="content__input">
+                @switch (i.Value.Type)
+                {
+                    case "Text":
+                        <input type="text" class="input-field-item content__input-field input-field" value="@i.Key">
+                        break;
+                }
+            </div>
+            <select class="input-type-item content__select">
+                @foreach (var val in Model.InputTypes.Select(m => m.Type).Distinct())
+                {
+                    if (val == i.Value.Type)
+                    {
+                        <option selected value="@val">@val</option>
+                    }
+                    else
+                    {
+                        <option value="@val">@val</option>
+                    }
+                }
+            </select>
+            <select class="input-size-item content__select">
+                @foreach (var val in Model.InputTypes.Select(m => m.Size).Distinct())
+                {
+                    if (val == i.Value.Size)
+                    {
+                        <option selected value="@val">@val</option>
+                    }
+                    else
+                    {
+                        <option value="@val">@val</option>
+                    }
+                }
+            </select>
+        </div>
+    }
+</div>
+<div id="edit-category-message-result">
+
+</div>

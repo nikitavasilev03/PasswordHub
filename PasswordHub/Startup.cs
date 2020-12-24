@@ -1,4 +1,5 @@
 using DomainCore.Context;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,13 @@ namespace PasswordHub
             //Устанавливаем строку подключения для БД по умолчанию
             ApplicationContext.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>();
-            
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Start/Index");
+                });
+
             services.AddControllersWithViews();
         }
 
@@ -48,7 +55,9 @@ namespace PasswordHub
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Start}/{action=Index}/{id?}");
             });
             
             
