@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainCore.Models
 {
@@ -11,5 +12,8 @@ namespace DomainCore.Models
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
+
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Card> Cards { get; set; }
     }
 }

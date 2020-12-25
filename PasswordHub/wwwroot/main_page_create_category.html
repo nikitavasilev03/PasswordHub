@@ -42,15 +42,19 @@
 					<ul class="categories__user-filter-list">
 						<li class="categories__user-filter-item">
 							<a href="#" class="categories__user-filter-link">Аккаунты</a>
+							<a href="#"><img src="./img/settings.png" alt="" class="categories__user-category-edit"></a>
 						</li>
 						<li class="categories__user-filter-item">
 							<a href="#" class="categories__user-filter-link">Заметки</a>
+							<a href="#"><img src="./img/settings.png" alt="" class="categories__user-category-edit"></a>
 						</li>
 						<li class="categories__user-filter-item">
 							<a href="#" class="categories__user-filter-link">Банковские карты</a>
+							<a href="#"><img src="./img/settings.png" alt="" class="categories__user-category-edit"></a>
 						</li>
 						<li class="categories__user-filter-item">
 							<a href="#" class="categories__user-filter-link">Паспорта</a>
+							<a href="#"><img src="./img/settings.png" alt="" class="categories__user-category-edit"></a>
 						</li>
 					</ul>
 				</div>
@@ -74,18 +78,16 @@
 								</div>
 							</div>
 						</li>
-						<a href="#" class="clickable-block"> 
-							<li class="cards__item">
-								<div class="cards__item-block">
-									<p class="cards__item-text">google.com</p>
-									<p class="cards__item-text">nikitavasilev@gmail.com</p>
-									<div class="cards__item-signature">
-										<p class="cards__item-text-signature">Аккаунты</p>
-										<p class="cards__item-text-signature">13:16 07.10.2020</p>
-									</div>
+						<li class="cards__item">
+							<div class="cards__item-block">
+								<p class="cards__item-text">google.com</p>
+								<p class="cards__item-text">nikitavasilev@gmail.com</p>
+								<div class="cards__item-signature">
+									<p class="cards__item-text-signature">Аккаунты</p>
+									<p class="cards__item-text-signature">13:16 07.10.2020</p>
 								</div>
-							</li>
-						</a>
+							</div>
+						</li>
 						<li class="cards__item">
 							<div class="cards__item-block">
 								<p class="cards__item-text">google.com</p>
@@ -182,30 +184,63 @@
 		</section>
 		<section class="content">
 			<div class="content__wrapper">
-				<p class="content__title">vk.com</p>
+				<p class="content__title">Создание категории</p>
 				<div class="content__input">
 					<p class="content__input-title">Название</p>
-					<input type="text" class="content__input-field input-field">
-				</div>
-				<div class="content__create-category-set-count-item">
-					<p class="content__input-title">Категория</p>
-					<select class="content__select">
-						<option value="1">Пункт 1</option>
-						<option value="2">Пункт 2</option>
-					</select>
-					<button class="content__btn-set-count-item button-style">Изменить</button>
-				</div>
-				<div class="content__input">
-					<p class="content__input-title">Логин</p>
-					<input type="text" class="content__input-field input-field">
-				</div>
-				<div class="content__input">
-					<p class="content__input-title">Пароль</p>
 					<input type="text" class="content__input-field input-field">
 				</div>
 				<div class="content_actions">
 					<button class="content_save button-style">Сохранить</button>
 					<button class="content_delete button-style">Удалить</button>
+				</div>
+				<div class="content__create-category-items">
+					<div class="content__create-category-set-count-item">
+						<p class="content__input-title">Количество полей</p>
+						<input class="content__number-input" type="number" value="1" min="1" max="10">
+						<button class="content__btn-set-count-item button-style">Изменить</button>
+					</div>
+					<div class="content__create-category-item">
+						<div class="content__input">
+							<input type="text" class="content__input-field input-field">
+						</div>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+					</div>
+					<div class="content__create-category-item">
+						<div class="content__input">
+							<input type="text" class="content__input-field input-field">
+						</div>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+					</div>
+					<div class="content__create-category-item">
+						<div class="content__input">
+							<input type="text" class="content__input-field input-field">
+						</div>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+						<select class="content__select">
+							<option value="1">Пункт 1</option>
+							<option value="2">Пункт 2</option>
+						</select>
+					</div>
+				</div>
+				<div class="content__message-result message-result-false">
+					<p class="content__message-result-text">Операция выполнена успешно</p>
 				</div>
 			</div>
 		</section>

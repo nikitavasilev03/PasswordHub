@@ -14,13 +14,20 @@ body{
     color: #000000;
 }
 
+a:hover, a:focus, a:active {
+	opacity: 0.8;
+	text-decoration: none;
+}
+
 .button-style {
+	display: flex;
 	background: #2EBC4F;
 	border-radius: 10px;
 	color: #FFFFFF;
 	align-items: center;
-	text-align: center;
+	justify-content: center;
 	border: none;
+	text-decoration: none;
 }
 
 .button-style:hover, .button-style:focus, .button-style:active {
@@ -134,7 +141,8 @@ body{
 }
 
 .categories__user-filter-list {
-	text-align: center;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .categories__user-filter-link {
@@ -153,11 +161,23 @@ body{
 	color: #000000;
 }
 
+.categories__user-filter-item{
+	display: flex;
+	justify-content: space-between;
+}
+
 .categories__filter-list {
 	margin-bottom: 20px;
 }
 
+.categories__user-category-edit {
+	width: 20px;
+}
 
+#img-sitting{
+	display: none;
+	visibility: hidden;
+}
 
 /* Categories styles end */
 
@@ -263,22 +283,46 @@ body{
 .content_actions {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-end;
-	align-items:flex-end;
+	justify-content: center;
+	align-items: flex-end;
+	margin-bottom: 20px;
 }
 
 .content_save {
-	margin-right: 83px;
 	font-size: 18px;
 	height: 30px;
 	width: 190px;
+	margin-right: 5px;
 }
 
 .content_delete {
 	background-color: red;
 	font-size: 18px;
-	height: 25px;
-	width: 120px;
+	height: 30px;
+	width: 190px;
+	margin-left: 5px;
+}
+
+.content__message-result{
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 18px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+
+.content__message-result-text {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.message-result-true {
+	background-color: #83f19d;
+}
+
+.message-result-false {
+	background-color: #ff9090;
 }
 
 /* Content styles end */
@@ -308,7 +352,7 @@ body{
 	font-size: 24px;
 	line-height: 30px;
 	text-decoration: none;
-	color: #000000;
+	color: #726161;
 }
 
 .profil__nav-link:hover, .profil__nav-link:focus, .profil__nav-link:active {
@@ -327,4 +371,47 @@ body{
 
 .red {
 	color: red;
+}
+
+/* Create category start */
+
+.content__create-category-items {
+	margin-top: 30px;
+}
+
+.content__create-category-item {
+	display: flex;
+	flex-wrap: wrap;
+	justify-items: center;
+	justify-content: center;
+}
+
+.content__select {
+	margin-left: 20px;
+	height: 38px;
+	font-size: 18px;
+}
+
+.content__create-category-set-count-item{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.content__btn-set-count-item {
+	height: 24px;
+	font-size: 18px;
+}
+
+.content__number-input {
+	height: 24px;
+}
+
+/* Create category end */
+
+.clickable-block{
+	text-decoration: none;
+	cursor: pointer;
 }

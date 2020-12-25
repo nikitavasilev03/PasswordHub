@@ -1,4 +1,5 @@
-﻿using DomainCore.Context;
+﻿using System;
+using DomainCore.Context;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +11,16 @@ namespace PasswordHub.Controllers
 {
     public class AuthController : BaseController
     {
-        protected ApplicationContext db;
-
-        public AuthController(ApplicationContext context)
+        public AuthController(ApplicationContext context) : base(context)
         {
-            db = context;
         }
 
-        protected async Task Authenticate(string userName)
+        protected async Task Authenticate(Guid userId)
         {
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userId.ToString())
             };
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie");

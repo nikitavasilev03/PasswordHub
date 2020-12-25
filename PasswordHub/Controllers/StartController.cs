@@ -17,10 +17,13 @@ namespace PasswordHub.Controllers
 
         }
         
+        [HttpGet]
         [Route("")]
         [Route("Index")]
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Hub");
             return View("SignIn");
         }
         
@@ -28,6 +31,8 @@ namespace PasswordHub.Controllers
         [Route("SingIn")]
         public IActionResult SignIn()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Hub");
             return View("SignIn");
         }
 
@@ -49,7 +54,8 @@ namespace PasswordHub.Controllers
                     return View(model);
                 }
 
-                await Authenticate(user.Email);
+                await Authenticate(user.Id);
+                return RedirectToAction("Index", "Hub");
 
             }
             return View(model);
@@ -59,6 +65,8 @@ namespace PasswordHub.Controllers
         [Route("Register")]
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Hub");
             return View("Register");
         }
 
@@ -91,7 +99,60 @@ namespace PasswordHub.Controllers
 
                 await db.Users.AddAsync(newUser);
                 await db.SaveChangesAsync();
-                await Authenticate(newUser.Email);
+                await Authenticate(newUser.Id);
+                
+                //Init category
+                Category[] categories = new Category[]
+                {
+                    new Category() { UserId = newUser.Id, Name = "Аккаунты" },
+                    new Category() { UserId = newUser.Id, Name = "Заметки" },
+                    new Category() { UserId = newUser.Id, Name = "Банковские карты" },
+                    new Category() { UserId = newUser.Id, Name = "Паспорта" }
+                };
+                await db.Categories.AddRangeAsync(categories);
+                await db.SaveChangesAsync();
+
+                var category = categories[0];
+                //Init Template fields
+                Template[] templates0 = new Template[]
+                {
+                    new Template() { Name = "Имя пользователя", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Пароль", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                };
+                category = categories[1];
+                Template[] templates1 = new Template[]
+                {
+                    new Template() { Name = "Содержимое", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 2)},
+                };
+                category = categories[2];
+                Template[] templates2 = new Template[]
+                {
+                    new Template() { Name = "Название карты", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Номер карты", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Владелец", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Действует до", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "CVC", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                };
+                category = categories[3];
+                Template[] templates3 = new Template[]
+                {
+                    new Template() { Name = "Фамилия Имя Отчество", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Дата рождения", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Серия", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Номер", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Кем выдан", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 1)},
+                    new Template() { Name = "Когда выдан", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Код подразделения", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                    new Template() { Name = "Действует до", Category = category, InputType = await db.InputTypes.FirstAsync(i => i.Type == "Text" && i.Size == 0)},
+                };
+
+                await db.Templates.AddRangeAsync(templates0);
+                await db.Templates.AddRangeAsync(templates1);
+                await db.Templates.AddRangeAsync(templates2);
+                await db.Templates.AddRangeAsync(templates3);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Hub");
             }
 
             return View(model);

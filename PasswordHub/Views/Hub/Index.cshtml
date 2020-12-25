@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "PasswordHub";
+    Layout = "~/Views/Hub/_Layout.cshtml";
+}
+
+<header class="header">
+    <div class="header__wrapper">
+        <div class="header__ph">
+            <a class="header__link" asp-action="Index">PH</a>
+            @*<input type="text" placeholder="Поиск" class="header__search-field">*@
+        </div>
+        <div class="header__user">
+            @*<p class="header__p">Васильев Никита</p>*@
+        </div>
+        <div class="header__profil">
+            @*<a href="#" class="header__link">Профиль</a>*@
+            <a class="header__link" asp-controller="Auth" asp-action="Logout">Выход</a>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <section class="categories">
+        <div class="categories__wrapper">
+           @{
+               await Html.RenderPartialAsync("_Categories");
+           }
+        </div>
+    </section>
+    <section class="cards">
+        <div class="cards__wrapper">
+            @{
+                await Html.RenderPartialAsync("_Cards");
+            }
+        </div>
+    </section>
+    <section class="content">
+        <div class="content__wrapper">
+            @RenderBody()
+        </div>
+    </section>
+</main>
