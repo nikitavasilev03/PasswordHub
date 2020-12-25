@@ -285,13 +285,14 @@ a:hover, a:focus, a:active {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-end;
+	margin-bottom: 20px;
 }
 
 .content_save {
-	margin-right: 83px;
 	font-size: 18px;
 	height: 30px;
 	width: 190px;
+	margin-right: 5px;
 }
 
 .content_delete {
@@ -299,6 +300,7 @@ a:hover, a:focus, a:active {
 	font-size: 18px;
 	height: 30px;
 	width: 190px;
+	margin-left: 5px;
 }
 
 .content__message-result{
@@ -408,3 +410,8 @@ a:hover, a:focus, a:active {
 }
 
 /* Create category end */
+
+.clickable-block{
+	text-decoration: none;
+	cursor: pointer;
+}

@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "Index";
+}
+
+@model PasswordHub.ViewModels.CardViewModel
+
+<p class="content__title"> </p>
+<div class="content__input">
+    <p class="content__input-title" >Название</p>
+    <input id="card-name-input-field" type="text" class="content__input-field input-field" asp-for="Name">
+</div>
+<div class="content__create-category-set-count-item">
+    <p class="content__input-title">Категория</p>
+    <select id="category-for-card" class="content__select" asp-for="Category.Id" onchange="GetFieldForCard()">
+        @foreach (var category in Model.Categories)
+        {
+            <option value="@category.Id">@category.Name</option>
+        }
+    </select>
+    @*<button class="content__btn-set-count-item button-style" onclick="GetFieldForCard()">Выбрать</button>*@
+</div>
+<div id="card-fields-block">
+    @if (Model.Records != null)
+    {
+        @foreach (var record in Model.Records)
+        {
+            <div class="content__input">
+                <p class="content__input-title">@record.Name</p>
+                <input id="@record.TemplateId" type="text" value="@record.Value" class="input-field-item content__input-field input-field">
+            </div>
+        }
+    }
+</div>
+<div class="content_actions">
+
+    @if (Model.Category != null)
+    {
+        <button class="content_save button-style" onclick="EditCard('@Model.Id')">Сохранить</button>
+        <button class="content_delete button-style" onclick="RemoveCard('@Model.Id')">Удалить</button>
+    }
+    else
+    {
+        <button class="content_save button-style" onclick="EditCard(null)">Сохранить</button>
+    }
+</div>
+
+<div id="card-message-result">
+
+</div>
